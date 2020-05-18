@@ -30,7 +30,7 @@ type UnifiedOrderParam struct {
 	NotifyURL      string // 是 异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。
 	Body           string // 是 商品简单描述，该字段请按照规范传递，具体请见参数规定
 	OutTradeNo     string // 是 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。详见商户订单号
-	TotalFee       int    // 是 订单总金额，单位为分，详见支付金额
+	TotalFee       int64  // 是 订单总金额，单位为分，详见支付金额
 	SpbillCreateIP string // 是 APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。
 	TradeType      string // 是 取值如下：JSAPI，NATIVE，APP等，说明详见参数规定
 	SignType       string // 否 签名类型，默认为MD5，支持HMAC-SHA256和MD5。

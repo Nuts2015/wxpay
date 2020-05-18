@@ -31,6 +31,8 @@ type Client struct {
 	isProduction bool
 }
 
+var WxpayClient *Client
+
 func New(appId, apiKey, mchId string, isProduction bool) (client *Client) {
 	client = &Client{}
 	client.appId = appId

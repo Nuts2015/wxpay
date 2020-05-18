@@ -38,19 +38,19 @@ func (this *Client) AppPay(param UnifiedOrderParam) (result *PayInfo, err error)
 	if rsp != nil {
 		result = &PayInfo{}
 		result.AppId = param.AppId
+		result.NonceStr = GetNonceStr()
+		result.Package = "Sign=WXPay"
 		result.PartnerId = this.mchId
 		result.PrepayId = rsp.PrepayId
-		result.Package = "Sign=WXPay"
-		result.NonceStr = GetNonceStr()
 		result.TimeStamp = fmt.Sprintf("%d", time.Now().Unix())
 		result.SignType = kSignTypeMD5
 
 		var p = url.Values{}
 		p.Set("appid", result.AppId)
 		p.Set("noncestr", result.NonceStr)
+		p.Set("package", result.Package)
 		p.Set("partnerid", result.PartnerId)
 		p.Set("prepayid", result.PrepayId)
-		p.Set("package", result.Package)
 		p.Set("timestamp", result.TimeStamp)
 
 		result.Sign = SignMD5(p, this.apiKey)
